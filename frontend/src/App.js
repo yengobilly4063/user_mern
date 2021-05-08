@@ -1,9 +1,10 @@
-
+import {Container} from "react-bootstrap"
+import Header from "./coponents/Header"
 function App() {
   return (
-    <div>
-      <h1>Welcome</h1>
-    </div>
+    <>
+      <Header />
+    </>
   );
 }
 
