@@ -74,6 +74,7 @@ export const logoutUser = () => async(dispatch, getState) => {
 
     dispatch({
       type: USER_LOGOUT_SUCCESS,
+      payload: null
     })
 
   }catch(error){

@@ -32,14 +32,14 @@ export const userReducers = (state = initialState, action) =>  {
     case USER_REGISTER_FAIL:
       return {
         ...state,
-        loading: false, registerSuccess: false, user: {}, error: action.payload
+        loading: false, registerSuccess: false, user: null, error: action.payload
       }
 
       // LOGIN User
     case USER_LOGIN_REQUEST:
       return {
         ...state,
-        loading: true, loginSuccess: false, user: {}, error: ""
+        loading: true, loginSuccess: false, user: null, error: ""
       }
     case USER_LOGIN_SUCCESS:
       return {
@@ -49,7 +49,7 @@ export const userReducers = (state = initialState, action) =>  {
     case USER_LOGIN_FAIL:
       return {
         ...state,
-        loading: false, loginSuccess: false, user: {}, error: action.payload
+        loading: false, loginSuccess: false, user: null, error: action.payload
       }
 
       // LOGOUT User
@@ -67,6 +67,8 @@ export const userReducers = (state = initialState, action) =>  {
           ...state,
           loading: false,
           logoutSuccess: true,
+          loginSuccess: false,
+          user: action.payload
         }
       }
       case USER_LOGOUT_FAIL:
