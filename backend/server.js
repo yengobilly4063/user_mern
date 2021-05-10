@@ -7,7 +7,7 @@ const app = express()
 
 try{
   mongoose.connect(process.env.MONGO_DB_URI, 
-    {useUnifiedTopology: true, useNewUrlParser: true}, () => {
+    {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true}, () => {
     console.log("Database connection established");
   })
 }catch(error){

@@ -9,13 +9,14 @@ import bcrypt from "bcryptjs"
 // @access   public
 export const registerUser = asyncHandler(async (req, res) => {
   const {name, email, password} = req.body
-  if(!name || !email || !password){
-    res.status(401).json({"error": "Please imput all fields"})
-  }
-
+  // if(!name || !email || !password){
+  //   res.status(401).json({"error": "Please imput all fields"})
+  // }
+  console.log(req.body);
   const userExists = await User.findOne({email})
   if(userExists){
-    res.status(400).json({"error": "User already exists"})
+    res.status(400) 
+    throw new Error("User already exists")
   }
 
   const user = await User.create({
@@ -55,7 +56,7 @@ export const authUser = asyncHandler(async (req, res) => {
   const {email, password} = req.body
   // Get User
   const user = await User.findOne({email})
-
+  console.log(req.body);
  // Verify Password
   if(user && (await comparePassword(password, user.password))){
     res.json({
@@ -65,7 +66,8 @@ export const authUser = asyncHandler(async (req, res) => {
       token: await generateToken(user._id)
     })
   }else{
-    res.status(401).json({"error": "Invalid email or password"})
+    res.status(401)
+    throw new Error("Invalid email or password")
   }
 })
 

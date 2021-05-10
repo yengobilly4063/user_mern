@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route} from "react-router-dom"
 import Header from "./coponents/Header"
 import LoginScreen from "./screens/LoginScreen"
 import RegisterScreen from "./screens/RegisterScreen"
-function App() {
+function App({history}) {
   return (
     <Router>
       <Header />

@@ -6,9 +6,16 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const middleware = [thunk]
 
 const rootReducers = combineReducers({
-  userInfo: userReducers
+  userInfo: userReducers,
 })
+const userFromLocalStorage = localStorage.getItem("userInfo") 
+  ? JSON.parse(localStorage.getItem("userInfo")) 
+  : null
 
-const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(...middleware)))
+const initialState = {
+  userInfo: {user: userFromLocalStorage, loginSuccess: false, registerSuccess: false }
+}
+
+const store = createStore(rootReducers, initialState,  composeWithDevTools(applyMiddleware(...middleware)))
 
 export default store
